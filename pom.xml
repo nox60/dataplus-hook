@@ -4,7 +4,7 @@
     <groupId>com.dataxplus.hook.utils</groupId>
     <artifactId>dataplus-hook</artifactId>
     <packaging>jar</packaging>
-    <version>0.0.1</version>
+    <version>0.0.3</version>
     <name>dataplus-hook</name>
     <url>http://maven.apache.org</url>
     <properties>
@@ -17,10 +17,6 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>
-<!--                        <manifest>-->
-<!--                            &lt;!&ndash;                            <addClasspath>true</addClasspath>&ndash;&gt;-->
-<!--                            <mainClass>com.dataxplus.hook.utils.App</mainClass>-->
-<!--                        </manifest>-->
                         <addMavenDescriptor>false</addMavenDescriptor>
                     </archive>
                 </configuration>
