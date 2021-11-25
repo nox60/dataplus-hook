@@ -33,7 +33,7 @@ public class HttpReq {
 //        StringEntity myEntity = new StringEntity(data,
 //                ContentType.APPLICATION_JSON);// 构造请求数据
         List<NameValuePair> nameValuePairList = new ArrayList<NameValuePair>();
-        nameValuePairList.add(new BasicNameValuePair("jboResult", data));
+        nameValuePairList.add(new BasicNameValuePair("jobResult", data));
         StringEntity reqEntity = null;
         try {
             reqEntity = new UrlEncodedFormEntity(nameValuePairList, "UTF-8");
