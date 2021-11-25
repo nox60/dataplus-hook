@@ -3,6 +3,8 @@ package com.dataxplus.hook.utils;
 
 import com.alibaba.datax.common.spi.Hook;
 import com.alibaba.datax.common.util.Configuration;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,10 +29,6 @@ public class App implements Hook {
         }
 
         System.out.println("Hello World!！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
-        System.out.println("Hello World!！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
-        System.out.println("Hello World!！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
-        System.out.println("Hello World!！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
-        System.out.println("Hello World!！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
     }
 
     @Override
@@ -40,28 +38,18 @@ public class App implements Hook {
 
     @Override
     public void invoke(Configuration configuration, Map<String, Number> map) {
-        if (configuration != null ) {
-           System.out.println(configuration);
-        }
-        try {
-            fileWriterMethod("/opt/local/tempdir", configuration.toJSON());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        if (configuration != null ) {
+//           System.out.println(configuration);
+//        }
+        log.info(configuration.toJSON());
+        log.info("----------------------------------------------");
+        map.forEach((key, value) -> {
+            log.info(key+", "+value);
+        });
+        log.info("----------------------------------------------");
 
-        log.info("2222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-        log.info("2222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-        log.info("2222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-        log.info("2222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-        log.info("2222222222222222222222222222222222222222222222222222222222222222222222222222222222");
-        log.info("2222222222222222222222222222222222222222222222222222222222222222222222222222222222");
+        String result = HttpReq.postMsg("http://localhost:8080/dataxs/jobReport", configuration.toJSON());
 
-        try {
-            throw new Exception("sadfasdfasdfasdfasdfasdfasdfsadf");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        System.out.println("Hello 111111!！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！");
     }
 
     public static void fileWriterMethod(String filepath, String content) throws IOException {
